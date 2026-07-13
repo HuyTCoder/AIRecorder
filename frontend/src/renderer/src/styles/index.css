@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* Nền */
+  --bg-base: #0b0f19;
+  --bg-sidebar: rgba(15, 23, 42, 0.6);
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-modal: #151d30; /* Solid dark background for modals */
+  --bg-hover: rgba(255, 255, 255, 0.06);
+
+  /* Viền */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-active: rgba(139, 92, 246, 0.4);
+  --border-focus: rgba(139, 92, 246, 0.7);
+
+  /* Chữ */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+
+  /* Accent */
+  --accent-violet: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-grad: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+
+  /* State */
+  --state-recording: #ef4444; /* đỏ */
+  --state-paused: #f59e0b; /* vàng */
+  --state-transcribing: #3b82f6; /* xanh */
+  --state-summarizing: #8b5cf6; /* tím */
+  --state-completed: #10b981; /* xanh lá */
+  --state-error: #ef4444;
+
+  /* Typography */
+  --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Shadow */
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-accent: 0 4px 20px rgba(139, 92, 246, 0.25);
+  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.15);
+
+  /* Dynamic Font Sizes */
+  --base-font-size: 13px;
+  --meta-font-size: 11px;
+  --title-font-size: 16px;
+}
+
+/* Light Theme overrides */
+.light-theme {
+  color-scheme: light;
+  --bg-base: #f8fafc;
+  --bg-sidebar: rgba(241, 245, 249, 0.9);
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-modal: #ffffff; /* Solid white background for modals */
+  --bg-hover: rgba(0, 0, 0, 0.05);
+
+  --border-subtle: rgba(0, 0, 0, 0.1);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(6, 116, 212, 0.05) 0%, transparent 45%);
+}
+
+/* Font Size Modifiers */
+body.text-small {
+  --base-font-size: 13px;
+  --meta-font-size: 11px;
+  --title-font-size: 15px;
+}
+body.text-medium {
+  --base-font-size: 15px;
+  --meta-font-size: 12px;
+  --title-font-size: 18px;
+}
+body.text-large {
+  --base-font-size: 16px;
+  --meta-font-size: 13px;
+  --title-font-size: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none; /* Tránh bôi đen chữ trên Desktop app trừ text areas */
+}
+
+body {
+  color-scheme: dark;
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--base-font-size);
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(6, 116, 212, 0.08) 0%, transparent 45%);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: inherit;
+  user-select: text; /* Cho phép nhập liệu */
+}
+
+select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 8px 12px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  border-color: var(--accent-violet);
+}
+
+/* Remove select option styling to let browser handle OS native dropdown color scheme */
+select option {
+  color: inherit;
+  background-color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

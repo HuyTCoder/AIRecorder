@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.env
+
+# Virtual environments
+.venv
+
+# Environment variables
+.env
+.env.*
+
+# Recordings data
+recordings/
+
+# Test fixtures
+tests/fixtures/
+
+

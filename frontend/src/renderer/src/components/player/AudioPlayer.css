@@ -1,0 +1,219 @@
+.audio-player {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.player-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.play-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-grad);
+  border: none;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-accent);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.play-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+}
+
+.play-btn:active {
+  transform: scale(0.95);
+}
+
+.play-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.player-status {
+  padding: 8px 10px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  background: rgba(139, 92, 246, 0.08);
+  font-size: 12px;
+}
+
+.waveform-wrapper {
+  flex: 1;
+}
+
+.player-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.time-display {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 4px;
+}
+
+.time-separator {
+  color: var(--text-muted);
+}
+
+.speed-selector {
+  display: flex;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+}
+
+.speed-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.speed-btn:hover {
+  color: white;
+}
+
+.speed-btn.active {
+  background: var(--accent-violet);
+  color: white;
+}
+
+.speed-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.volume-control-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.volume-icon-btn {
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.volume-icon-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.volume-icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.volume-popover {
+  position: absolute;
+  top: 100%; /* Drop downwards */
+  right: -4px; /* Align slightly past the right edge to look centered with the button padding */
+  transform: translateY(10px);
+  background: var(--bg-modal);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column; /* Vertical */
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  z-index: 50;
+  margin-top: 8px;
+}
+
+.volume-control-container:hover .volume-popover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Up arrow for downward popover */
+.volume-popover::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 14px; /* Align arrow with the center of the button */
+  transform: translateX(50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent var(--border-subtle) transparent;
+}
+
+.volume-popover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 14px;
+  transform: translateX(50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--bg-modal) transparent;
+  z-index: 1;
+  margin-bottom: -1px;
+}
+
+.volume-slider {
+  width: 120px;
+  accent-color: var(--accent-violet);
+  cursor: pointer;
+}
+
+.volume-popover-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 720px) {
+  .player-meta {
+    justify-content: center;
+  }
+}
