@@ -30,7 +30,7 @@ Dự án đã hoàn thành toàn bộ các tính năng cốt lõi theo đúng đ
 * **Giao diện UI:** Hiển thị Badge màu tương ứng từng người nói (`[Người nói 0]`, `[Người nói 1]`,...) trực quan bên cạnh timestamps.
 
 ### 5. Tóm tắt nội dung AI (AI Summary)
-* **AI Provider:** Tích hợp thành công Google Gemini API (`gemini-3.5-flash` và dòng Gemini 3.x) chạy xử lý ngầm qua FastAPI Background Tasks thông qua [llm.py](file:///d:/KProject/AIRecorder/backend/app/services/llm.py).
+* **AI Provider:** Tích hợp thành công các nhà cung cấp Generative AI hàng đầu (Google Gemini, OpenAI ChatGPT, và Anthropic Claude) chạy xử lý ngầm qua FastAPI Background Tasks thông qua [llm.py](file:///d:/KProject/AIRecorder/backend/app/services/llm.py). Mặc định hỗ trợ nhiều dòng mô hình khác nhau và cho phép chuyển đổi linh hoạt.
 * **Thông tin tóm tắt:** Phân tách kết quả tóm tắt cuộc họp thành 3 phần rõ ràng: Tổng quan (Summary), Ý chính (Key Points), và Đầu việc cần làm (Action Items).
 * **Xuất báo cáo:** Chức năng xuất báo cáo Markdown (.md) đẹp mắt từ giao diện Electron.
 

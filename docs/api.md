@@ -176,10 +176,10 @@ Tất cả các API khi gặp lỗi (4xx hoặc 5xx) sẽ phản hồi theo cấ
 * **Mô tả:** Hủy ngang tiến trình dịch thuật đang xử lý ngầm và đưa trạng thái về `stopped`.
 * **Phản hồi thành công (200 OK):** Thông tin tác vụ đã bị hủy.
 
-### Khởi chạy tóm tắt nội dung AI (Google Gemini)
+### Khởi chạy tóm tắt nội dung AI (Generative AI Summary)
 * **Method:** `POST`
 * **Path:** `/recordings/{session_id}/summarize`
-* **Mô tả:** Đưa tác vụ gửi văn bản lên Google Gemini API tóm tắt vào hàng xử lý ngầm.
+* **Mô tả:** Đưa tác vụ gửi văn bản lên API Generative AI đã chọn (Gemini, ChatGPT, Claude) để tóm tắt cuộc họp/bản ghi âm vào hàng xử lý ngầm.
 * **Phản hồi thành công (202 Accepted):**
   ```json
   {
@@ -226,5 +226,56 @@ Tất cả các API khi gặp lỗi (4xx hoặc 5xx) sẽ phản hồi theo cấ
     "action_items": [
       "Nhiệm vụ cần thực hiện 1"
     ]
+  }
+  ```
+
+---
+
+## ⚙️ 4. Settings (Cài đặt Ứng dụng)
+
+> [!NOTE]
+> Các endpoint quản lý cấu hình và cài đặt được triển khai tại [settings.py](file:///d:/KProject/AIRecorder/backend/app/api/settings.py).
+
+### Lấy thông tin cài đặt hiện tại
+* **Method:** `GET`
+* **Path:** `/settings`
+* **Mô tả:** Trả về toàn bộ cấu hình hiện tại của ứng dụng (lưu trong `settings.json` ở Backend), bao gồm nhà cung cấp AI đang chọn, API Keys, theme, font size, và custom prompt.
+* **Phản hồi thành công (200 OK):**
+  ```json
+  {
+    "ai_provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "theme": "dark",
+    "font_size": "small",
+    "prompt": "Bạn là một trợ lý AI chuyên nghiệp...",
+    "gemini_api_key": "AIzaSy...",
+    "chatgpt_api_key": "sk-proj-...",
+    "claude_api_key": "sk-ant-..."
+  }
+  ```
+
+### Cập nhật cài đặt
+* **Method:** `POST`
+* **Path:** `/settings`
+* **Mô tả:** Cập nhật một hoặc nhiều cấu hình ứng dụng. Các trường không được truyền lên sẽ giữ nguyên giá trị cũ. Kết quả mới sẽ tự động được ghi đè atomically xuống tệp tin `settings.json`.
+* **Yêu cầu (Request Body - SettingsUpdate):**
+  ```json
+  {
+    "ai_provider": "chatgpt",
+    "model": "gpt-4o",
+    "chatgpt_api_key": "sk-proj-newkey123"
+  }
+  ```
+* **Phản hồi thành công (200 OK):** Trả về toàn bộ cài đặt sau khi cập nhật.
+  ```json
+  {
+    "ai_provider": "chatgpt",
+    "model": "gpt-4o",
+    "theme": "dark",
+    "font_size": "small",
+    "prompt": "Bạn là một trợ lý AI chuyên nghiệp...",
+    "gemini_api_key": "AIzaSy...",
+    "chatgpt_api_key": "sk-proj-newkey123",
+    "claude_api_key": "sk-ant-..."
   }
   ```

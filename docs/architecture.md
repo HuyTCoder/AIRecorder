@@ -27,10 +27,10 @@ flowchart TD
 
         Pipeline -->|Background Worker| ASR[Zipformer ASR Service]
         Pipeline -->|Background Worker| Punct[Punctuation Service]
-        Pipeline -->|Background Worker| Gemini[Summary API Service]
+        Pipeline -->|Background Worker| LLM[Summary API Service]
 
         ASR & Punct -->|Atomic JSON write| DiskJSON[(recordings/id/transcript.json)]
-        Gemini -->|Atomic Metadata update| DiskMeta[(recordings/id/metadata.json)]
+        LLM[LLM: Gemini / ChatGPT / Claude] -->|Atomic Metadata update| DiskMeta[(recordings/id/metadata.json)]
         Repo -->|Đọc/Ghi dữ liệu CRUD| DiskMeta
     end
 ```
@@ -82,7 +82,7 @@ stateDiagram-v2
     
     transcribed --> summarizing : POST /recordings/{id}/summarize
     summarizing --> completed : Tóm tắt Hoàn thành (Có summary.json)
-    summarizing --> error : Lỗi Gemini API / Lỗi mạng
+    summarizing --> error : Lỗi LLM API / Lỗi mạng
     
     error --> transcribing : Người dùng bấm Retry STT (khi error_source == "transcribe")
     error --> summarizing : Người dùng bấm Retry Summary (khi error_source == "summarize")

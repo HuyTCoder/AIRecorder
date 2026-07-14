@@ -37,8 +37,10 @@ uv run pytest -q
 
 ## ⚙️ Cấu hình Môi trường
 
-Sao chép `.env.example` thành `.env` và bổ sung API key của bạn:
-* `GEMINI_API_KEY`: API Key kết nối dịch vụ tóm tắt Google Gemini.
+Sao chép `.env.example` thành `.env` và bổ sung các API key của bạn (nếu có):
+* `GEMINI_API_KEY`: API Key kết nối dịch vụ tóm tắt Google Gemini (hoặc cấu hình qua UI).
+* `CHATGPT_API_KEY` (hoặc `OPENAI_API_KEY`): API Key kết nối dịch vụ OpenAI ChatGPT.
+* `CLAUDE_API_KEY`: API Key kết nối dịch vụ Anthropic Claude.
 * `ZIPFORMER_NUM_THREADS`: Giới hạn luồng xử lý CPU (mặc định: `4`).
 * `ZIPFORMER_MODEL_DIR`: Đường dẫn chứa mô hình STT (mặc định: `models`).
 
