@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
+  position: relative;
 }
 
 .main-placeholder {
@@ -230,7 +231,7 @@
 
 .btn-dashboard-action {
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-btn);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   color: var(--text-primary);
@@ -293,9 +294,9 @@
 
 .ai-toggle-btn-close:hover {
   opacity: 1;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-hover);
   color: var(--text-primary);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--border-active);
 }
 
 .ai-toggle-btn-close .icon-hover {
@@ -312,26 +313,29 @@
 
 /* Open button style (top right of main content) */
 .ai-toggle-btn-open {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: var(--bg-btn);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
+  border-radius: 50% !important; /* Make it circular! */
   color: var(--text-secondary);
   cursor: pointer;
-  opacity: 0.4;
-  transition: all 0.2s;
+  opacity: 0.7;
+  transition: all 0.2s ease;
   align-self: center;
+  outline: none !important;
+  box-shadow: var(--shadow-sm);
 }
 
 .ai-toggle-btn-open:hover {
   opacity: 1;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-violet);
+  border-color: var(--accent-violet);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
 }
 
 .ai-toggle-btn-open .icon-hover {
@@ -391,4 +395,139 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* AI Summary panel overlay layer (right-aligned) */
+.ai-summary-overlay-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 15, 30, 0.5);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99;
+  transition:
+    opacity 0.22s ease,
+    backdrop-filter 0.22s ease;
+}
+
+.ai-summary-overlay-backdrop.visible {
+  opacity: 1;
+  backdrop-filter: blur(2px);
+  pointer-events: auto;
+}
+
+.ai-summary-overlay-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: rgba(11, 15, 25, 0.8) !important; /* Semi-transparent dark background */
+  backdrop-filter: blur(16px); /* Premium blur effect */
+  border-left: 1px solid var(--border-subtle);
+  border-right: none;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+/* Light theme support for glassmorphism */
+body.light-theme .ai-summary-overlay-panel {
+  background: rgba(245, 247, 250, 0.85) !important;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.1);
+}
+
+.ai-summary-overlay-panel.open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.ai-summary-overlay-panel .ai-panel {
+  flex: 1;
+  height: 100%;
+  border-left: none;
+  background: transparent !important; /* Let glassmorphism show through */
+}
+
+/* Make room for floating toggle button in header and shift actions */
+.ai-summary-overlay-panel .ai-panel-header {
+  padding-right: 56px !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.ai-summary-overlay-panel .ai-actions {
+  margin-right: 8px !important;
+}
+
+/* Custom resizer placed inside the overlay panel (left edge) */
+.ai-summary-overlay-panel .panel-resizer.left-edge {
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.ai-summary-overlay-panel .panel-resizer.left-edge:hover,
+.ai-summary-overlay-panel .panel-resizer.left-edge.dragging {
+  background: var(--accent-violet);
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Hide inner close buttons and fix padding in overlay panel */
+.ai-summary-overlay-panel .ai-toggle-btn-close {
+  display: none !important;
+}
+
+.ai-summary-overlay-panel .ai-panel-header {
+  padding-left: 16px !important;
+  padding-right: 48px !important;
 }

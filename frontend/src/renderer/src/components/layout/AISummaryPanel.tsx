@@ -9,7 +9,7 @@ import { getRecordingTitle } from '../../utils/format'
 import { useSummarize } from '../../hooks/useSummarize'
 import './AIPanel.css'
 
-export function AIPanel({ width, onClose }: { width?: number; onClose?: () => void }) {
+export function AISummaryPanel({ width, onClose }: { width?: number; onClose?: () => void }) {
   const { state: uiState } = useApp()
   const toast = useToast()
   const activeId = uiState.activeRecordingId
@@ -100,7 +100,7 @@ export function AIPanel({ width, onClose }: { width?: number; onClose?: () => vo
       <div
         className="ai-panel empty"
         style={{
-          width: width ? `${width}px` : undefined,
+          width: width ? `${width}px` : '100%',
           minWidth: '200px'
         }}
       >
@@ -154,7 +154,7 @@ export function AIPanel({ width, onClose }: { width?: number; onClose?: () => vo
     <div
       className="ai-panel"
       style={{
-        width: width ? `${width}px` : undefined,
+        width: width ? `${width}px` : '100%',
         minWidth: '200px'
       }}
     >

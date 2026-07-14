@@ -41,6 +41,8 @@
   --radius-lg: 16px;
   --radius-xl: 20px;
 
+  --bg-btn: rgba(255, 255, 255, 0.05);
+
   /* Shadow */
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.2);
   --shadow-accent: 0 4px 20px rgba(139, 92, 246, 0.25);
@@ -59,7 +61,8 @@
   --bg-sidebar: rgba(241, 245, 249, 0.9);
   --bg-card: rgba(255, 255, 255, 0.9);
   --bg-modal: #ffffff; /* Solid white background for modals */
-  --bg-hover: rgba(0, 0, 0, 0.05);
+  --bg-hover: rgba(139, 92, 246, 0.08); /* Vibrant brand purple overlay on hover */
+  --bg-btn: rgba(15, 23, 42, 0.05); /* Contrasted button base in light theme */
 
   --border-subtle: rgba(0, 0, 0, 0.1);
 

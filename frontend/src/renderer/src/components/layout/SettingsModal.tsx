@@ -82,12 +82,13 @@ export function SettingsModal() {
     dispatch({ type: 'SET_SETTINGS_MODAL_OPEN', payload: false })
   }
 
-  if (!uiState.isSettingsModalOpen) return null
-
   const currentApiKeyField = `${formData.ai_provider}_api_key` as keyof SettingsUpdate
 
   return (
-    <div className="settings-modal-overlay" onClick={() => handleClose(true)}>
+    <div
+      className={`settings-modal-overlay ${uiState.isSettingsModalOpen ? 'visible' : ''}`}
+      onClick={() => handleClose(true)}
+    >
       <div className="settings-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="settings-modal-header">
           <h2>Cài đặt ứng dụng</h2>

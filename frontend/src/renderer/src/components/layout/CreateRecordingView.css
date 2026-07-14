@@ -92,7 +92,7 @@
 }
 
 .source-pill:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-hover);
   color: var(--text-secondary);
 }
 
@@ -142,7 +142,7 @@
 }
 
 .modal-btn-cancel {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-btn);
   border: 1px solid var(--border-subtle) !important;
   color: var(--text-secondary);
 }
@@ -171,3 +171,49 @@
   box-shadow: none;
 }
 
+/* Light theme overrides for high contrast and modern styling */
+body.light-theme .form-group input {
+  background: rgba(0, 0, 0, 0.03) !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.light-theme .form-group input:focus {
+  border-color: var(--accent-violet) !important;
+  background: #ffffff !important;
+}
+
+body.light-theme .source-pills {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.light-theme .source-pill {
+  color: #475569 !important; /* Darker Slate text for better readability */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Soft border to make pills distinct */
+}
+
+body.light-theme .source-pill:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #0f172a !important;
+}
+
+body.light-theme .source-pill.selected {
+  background: linear-gradient(145deg, rgba(139, 92, 246, 0.25), rgba(6, 182, 212, 0.22)) !important;
+  color: #5b21b6 !important; /* Deep rich purple for high visibility */
+  border-color: rgba(139, 92, 246, 0.6) !important; /* Stronger accent border */
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.18) !important;
+  font-weight: 700 !important;
+}
+
+body.light-theme .modal-btn-cancel {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.light-theme .modal-btn-cancel:hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #dc2626 !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}

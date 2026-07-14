@@ -6,7 +6,10 @@ export async function convertToStandardWav(file: File): Promise<Blob> {
   const arrayBuffer = await file.arrayBuffer()
 
   // 1. Giải mã dữ liệu âm thanh sử dụng AudioContext của browser
-  const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)()
+  const audioCtx = new (
+    window.AudioContext ||
+    (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  )()
   let decodedBuffer: AudioBuffer
   try {
     decodedBuffer = await audioCtx.decodeAudioData(arrayBuffer)

@@ -7,7 +7,7 @@ import { queryKeys } from '../../constants'
 import { formatTime, formatDate, getRecordingTitle } from '../../utils/format'
 import { TitleBar } from './TitleBar'
 import { Sidebar } from './Sidebar'
-import { AIPanel } from './AIPanel'
+import { AISummaryPanel } from './AISummaryPanel'
 import { CreateRecordingView } from './CreateRecordingView'
 import { SettingsModal } from './SettingsModal'
 import { AudioPlayer } from '../player/AudioPlayer'
@@ -23,7 +23,7 @@ import './AppShell.css'
 export function AppShell() {
   const { state: uiState, dispatch } = useApp()
   const activeId = uiState.activeRecordingId
-  const [isAIPanelCollapsed, setIsAIPanelCollapsed] = useState(false)
+  // Removed unused panel collapsed state
 
   // Query: Get active recording details (polls while transcribing/summarizing)
   const { data: activeRecording } = useQuery({
@@ -67,11 +67,17 @@ export function AppShell() {
   const pauseMutation = usePauseRecording(activeId)
   const resumeMutation = useResumeRecording(activeId)
   const stopMutation = useStopRecording(activeId)
+  const [isAISummaryVisible, setIsAISummaryVisible] = useState(false)
   const deleteMutation = useDeleteRecording()
 
   // Resizers
   const sidebarResize = usePanelResize('sidebar', 320, 200, 600)
-  const aiPanelResize = usePanelResize('aipanel', 340, 200, 600)
+  const aiPanelResize = usePanelResize('aipanel', 350, 250, 350)
+
+  // Auto-close AI summary panel when active recording, creating state, or settings modal changes
+  useEffect(() => {
+    setIsAISummaryVisible(false)
+  }, [uiState.activeRecordingId, uiState.isCreatingRecording, uiState.isSettingsModalOpen])
 
   return (
     <div className="app-shell">
@@ -90,6 +96,32 @@ export function AppShell() {
 
         {/* Middle column: Main Work Area */}
         <div className="main-content">
+          {/* Backdrop/Overlay to dim the main content when AI panel is open */}
+          {activeRecording &&
+            !uiState.isCreatingRecording &&
+            activeRecording.state !== 'recording' &&
+            activeRecording.state !== 'paused' &&
+            uiState.liveRecording.state !== 'saving' && (
+              <>
+                <div
+                  className={`ai-summary-overlay-backdrop ${isAISummaryVisible ? 'visible' : ''}`}
+                  onClick={() => setIsAISummaryVisible(false)}
+                />
+                <div
+                  className={`ai-summary-overlay-panel ${isAISummaryVisible ? 'open' : ''}`}
+                  style={{ width: `${aiPanelResize.width}px` }}
+                >
+                  <div
+                    className={`panel-resizer horizontal-resizer left-edge ${aiPanelResize.isDragging ? 'dragging' : ''}`}
+                    onMouseDown={aiPanelResize.startDrag}
+                  />
+                  <AISummaryPanel
+                    width={aiPanelResize.width - 4}
+                    onClose={() => setIsAISummaryVisible(false)}
+                  />
+                </div>
+              </>
+            )}
           {uiState.isCreatingRecording ? (
             <CreateRecordingView />
           ) : activeRecording ? (
@@ -99,44 +131,62 @@ export function AppShell() {
                   <h1 className="details-title">{getRecordingTitle(activeRecording)}</h1>
                   <span className="details-date">{formatDate(activeRecording.created_at)}</span>
                 </div>
-                {isAIPanelCollapsed &&
-                  activeRecording.state !== 'recording' &&
+                {activeRecording.state !== 'recording' &&
                   activeRecording.state !== 'paused' &&
                   uiState.liveRecording.state !== 'saving' && (
                     <button
                       className="ai-toggle-btn-open"
-                      onClick={() => setIsAIPanelCollapsed(false)}
-                      title="Mở cột tóm tắt AI"
+                      onClick={() => setIsAISummaryVisible(!isAISummaryVisible)}
+                      title={isAISummaryVisible ? 'Đóng tóm tắt AI' : 'Mở tóm tắt AI'}
+                      style={{ zIndex: 110, position: 'relative' }}
                     >
-                      <svg
-                        className="icon-normal"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="15" y1="3" x2="15" y2="21"></line>
-                      </svg>
-                      <svg
-                        className="icon-hover"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="15" y1="3" x2="15" y2="21"></line>
-                        <path d="M12 15l-3-3 3-3"></path>
-                      </svg>
+                      {isAISummaryVisible ? (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                      ) : (
+                        <>
+                          <svg
+                            className="icon-normal"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="15" y1="3" x2="15" y2="21"></line>
+                          </svg>
+                          <svg
+                            className="icon-hover"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="15" y1="3" x2="15" y2="21"></line>
+                            <path d="M12 15l-3-3 3-3"></path>
+                          </svg>
+                        </>
+                      )}
                     </button>
                   )}
               </div>
@@ -261,22 +311,6 @@ export function AppShell() {
             </div>
           )}
         </div>
-
-        {/* Right column: AI Panel */}
-        {activeRecording &&
-          !uiState.isCreatingRecording &&
-          activeRecording.state !== 'recording' &&
-          activeRecording.state !== 'paused' &&
-          uiState.liveRecording.state !== 'saving' &&
-          !isAIPanelCollapsed && (
-            <>
-              <div
-                className={`panel-resizer ${aiPanelResize.isDragging ? 'dragging' : ''}`}
-                onMouseDown={aiPanelResize.startDrag}
-              />
-              <AIPanel width={aiPanelResize.width} onClose={() => setIsAIPanelCollapsed(true)} />
-            </>
-          )}
       </div>
 
       {/* Modals */}

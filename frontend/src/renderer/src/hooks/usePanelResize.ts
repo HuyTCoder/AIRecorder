@@ -29,15 +29,16 @@ export function usePanelResize(
       let newWidth = defaultWidth
       let maxAllowed = maxWidth
       if (panelId === 'aipanel') {
-        newWidth = document.body.clientWidth - e.clientX
         const sidebar = document.querySelector('.sidebar') as HTMLElement
         const sidebarW = sidebar ? sidebar.offsetWidth : 200
-        maxAllowed = Math.min(maxWidth, document.body.clientWidth - sidebarW - 400)
+        newWidth = document.body.clientWidth - e.clientX
+        maxAllowed = Math.min(maxWidth, document.body.clientWidth - sidebarW - 300)
       } else {
         newWidth = e.clientX
+        // For sidebar, we limit its width based on whether the AI panel is open
         const aipanel = document.querySelector('.ai-panel') as HTMLElement
-        const aiW = aipanel ? aipanel.offsetWidth : 0 // 0 if AIPanel is closed
-        maxAllowed = Math.min(maxWidth, document.body.clientWidth - aiW - 400)
+        const aiW = aipanel ? aipanel.offsetWidth : 0
+        maxAllowed = Math.min(maxWidth, document.body.clientWidth - aiW - 300)
       }
 
       if (newWidth < minWidth) newWidth = minWidth

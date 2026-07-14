@@ -105,7 +105,7 @@
 }
 
 .segment-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-hover);
   transform: translateX(4px);
 }
 
@@ -207,7 +207,6 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-
 
 @keyframes spin {
   0% {
