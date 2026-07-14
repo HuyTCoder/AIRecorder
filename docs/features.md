@@ -27,7 +27,7 @@ AI Recorder hỗ trợ ghi âm đồng thời từ hai nguồn độc lập trê
 
 ## 2. Nhập & Chuẩn hóa tệp tin âm thanh ngoại vi (Audio Import & Normalization)
 
-Ngoài việc ghi âm trực tiếp, AI Recorder hỗ trợ người dùng nhập (Import) bất kỳ tệp âm thanh nào từ bên ngoài (ví dụ: file ghi âm cuộc gọi `.mp3`, `.m4a`, `.ogg`, `.wav` chất lượng khác) để chạy dịch thuật và tóm tắt cuộc họp.
+Ngoài việc ghi âm trực tiếp, AI Recorder hỗ trợ người dùng nhập (Import) bất kỳ tệp âm thanh nào từ bên ngoài để chạy dịch thuật và tóm tắt cuộc họp. Các định dạng được hỗ trợ chuyển đổi bao gồm: **MP3 (`.mp3`)**, **M4A/AAC (`.m4a`)**, **WAV (`.wav` chất lượng khác)**, **OGG (`.ogg`, `.oga`)**, **FLAC (`.flac`)**, **WEBM (`.webm`)**, và các định dạng âm thanh tiêu chuẩn được hỗ trợ bởi Chromium.
 
 ### Cơ chế chuẩn hóa phía Frontend (Web Audio API):
 Để đảm bảo tệp âm thanh đầu vào luôn khớp 100% với yêu cầu kỹ thuật của mô hình STT (16kHz, Mono, 16-bit PCM), hệ thống thực hiện chuẩn hóa trực tiếp trên Frontend Electron thông qua Web Audio API:
