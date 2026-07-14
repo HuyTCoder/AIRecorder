@@ -1,12 +1,12 @@
 # AI Recorder 🎙️🤖
 
-Ứng dụng ghi âm máy tính chuyên nghiệp dành cho Windows. Hỗ trợ thu âm đồng thời Microphone và Loa hệ thống, tích hợp nhận diện giọng nói tiếng Việt offline bằng **Zipformer (sherpa-onnx)** và tóm tắt cuộc họp linh hoạt bằng **Generative AI (Google Gemini, OpenAI ChatGPT, hoặc Anthropic Claude)**.
+Ứng dụng ghi âm máy tính chuyên nghiệp dành cho Windows. Hỗ trợ thu âm đồng thời Microphone và Loa hệ thống, tích hợp nhận diện giọng nói tiếng Việt offline bằng **Zipformer (sherpa-onnx)** và tóm tắt cuộc họp linh hoạt bằng **Generative AI** (tương thích với Google Gemini, OpenAI ChatGPT, hoặc Anthropic Claude thông qua API Key cá nhân).
 
 ---
 
 ## 🎙️ Giới thiệu dự án
 
-AI Recorder giải quyết bài toán ghi lại các cuộc họp trực tuyến, bài giảng hoặc buổi thuyết trình trên Windows. Điểm độc đáo của ứng dụng là khả năng **hoạt động offline** khi dịch giọng nói thành văn bản, bảo vệ tối đa quyền riêng tư của dữ liệu âm thanh, kết hợp cùng sức mạnh AI linh hoạt để tự động lập biên bản tóm tắt cuộc họp bằng một trong ba nhà cung cấp LLM lớn: **Google Gemini, OpenAI ChatGPT, hoặc Anthropic Claude**.
+AI Recorder giải quyết bài toán ghi lại các cuộc họp trực tuyến, bài giảng hoặc buổi thuyết trình trên Windows. Điểm độc đáo của ứng dụng là khả năng **hoạt động offline** khi dịch giọng nói thành văn bản, bảo vệ tối đa quyền riêng tư của dữ liệu âm thanh, kết hợp cùng sức mạnh AI linh hoạt để tự động lập biên bản tóm tắt cuộc họp thông qua các mô hình hàng đầu như **Google Gemini, OpenAI ChatGPT, hoặc Anthropic Claude** (người dùng chỉ cần cấu hình API Key tương ứng để bắt đầu sử dụng).
 
 ### Các Tính năng Cốt lõi:
 * **Ghi âm trộn nguồn:** Thu độc lập hoặc đồng thời Microphone và System Audio (WASAPI loopback) cực kỳ mượt mà. Được quản lý bởi [recorder.py](file:///d:/KProject/AIRecorder/backend/app/services/recorder.py) và trộn bằng [audio_mixer.py](file:///d:/KProject/AIRecorder/backend/app/services/audio_mixer.py).

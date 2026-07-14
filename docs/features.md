@@ -95,6 +95,9 @@ Nhằm mục đích lập biên bản cuộc họp chi tiết cho nhiều thành
 
 Sau khi có bản dịch văn bản đầy đủ kèm nhãn người nói, người dùng có thể gửi yêu cầu tóm tắt cuộc họp/bản ghi âm bằng một trong các mô hình Generative AI được hỗ trợ.
 
+> [!NOTE]
+> Khác với tính năng Nhận diện giọng nói (STT) và Phân biệt người nói (Diarization) chạy hoàn toàn **offline trên máy người dùng**, tính năng Tóm tắt nội dung AI gọi ra các dịch vụ LLM bên ngoài (Gemini, ChatGPT, Claude). Để sử dụng, bạn cần có **API Key của nhà cung cấp AI tương ứng** — có thể điền vào mục Cài đặt (Settings) trong ứng dụng hoặc khai báo trong tệp `backend/.env`.
+
 * **Mã nguồn tích hợp:** [llm.py](file:///d:/KProject/AIRecorder/backend/app/services/llm.py)
 * **Các Nhà cung cấp AI hỗ trợ (AI Providers):**
   1. **Google Gemini API:** Mặc định sử dụng dòng mô hình `gemini-3.5-flash` hoặc các dòng Gemini khác (ví dụ: `gemini-1.5-flash`, `gemini-2.5-flash`).
