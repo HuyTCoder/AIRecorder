@@ -1,13 +1,7 @@
 import os
 from typing import List
-from pathlib import Path
-from dotenv import load_dotenv
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-# Load environment variables from .env file
-env_path = Path(__file__).resolve().parent.parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
 
 
 class Settings(BaseSettings):

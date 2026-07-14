@@ -86,7 +86,7 @@ npm run dev
 
 ### 💡 Lưu ý quan trọng khi chạy lần đầu:
 * **Tải tự động mô hình AI (Lazy-loading Models):** Ở lần đầu tiên bạn bấm nút **Transcribe (Dịch văn bản)** trên giao diện ứng dụng, backend sẽ tự động tải các mô hình STT (Zipformer ~270MB), Diarization (CAM++ ~24MB) và Dấu câu (ViBERT-capu) trực tiếp từ HuggingFace/Github về máy. Quá trình này có thể mất từ 1-3 phút tùy thuộc vào tốc độ mạng của bạn. Các lần dịch sau sẽ chạy ngay lập tức mà không cần tải lại.
-* **Cấu hình API Key:** Bạn có thể điền sẵn khóa API của Google Gemini, ChatGPT hoặc Claude vào tệp `backend/.env`, hoặc điền trực tiếp trong giao diện ứng dụng bằng cách bấm biểu tượng **Cài đặt (Settings)** ở góc phải màn hình.
+* **Cấu hình API Key:** Bạn có thể điền trực tiếp các khóa API của Google Gemini, ChatGPT hoặc Claude trong giao diện ứng dụng bằng cách bấm vào biểu tượng **Cài đặt (Settings)** ở góc bên phải màn hình. Cài đặt này sẽ được lưu giữ cục bộ và an toàn trong cấu hình của ứng dụng.
 
 ---
 

@@ -37,12 +37,13 @@ uv run pytest -q
 
 ## ⚙️ Cấu hình Môi trường
 
-Sao chép `.env.example` thành `.env` và thiết lập các khóa API phù hợp với nhu cầu của bạn (hoặc bạn có thể thiết lập trực tiếp trên màn hình Cài đặt của ứng dụng):
-* `GEMINI_API_KEY`: API Key của Google Gemini.
-* `CHATGPT_API_KEY` (hoặc `OPENAI_API_KEY`): API Key của OpenAI ChatGPT.
-* `CLAUDE_API_KEY`: API Key của Anthropic Claude.
+Sao chép `.env.example` thành `.env` để cấu hình các tham số chạy offline và server:
 * `ZIPFORMER_NUM_THREADS`: Giới hạn số luồng CPU dùng cho xử lý nhận diện giọng nói offline (mặc định: `4`).
 * `ZIPFORMER_MODEL_DIR`: Thư mục lưu trữ mô hình STT (mặc định: `models`).
+* `HOST`/`PORT`: Cấu hình địa chỉ và cổng chạy FastAPI.
+
+> [!NOTE]
+> Các khóa API dành cho tính năng tóm tắt bằng Generative AI (Google Gemini, OpenAI ChatGPT, Anthropic Claude) không cần cấu hình trong môi trường `.env`. Thay vào đó, chúng được thiết lập trực tiếp và bảo mật thông qua giao diện **Cài đặt (Settings)** trên ứng dụng, được lưu cục bộ tại tệp `settings.json`.
 
 ---
 

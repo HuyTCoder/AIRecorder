@@ -30,17 +30,16 @@ class SummaryService:
         model_name = settings.model
         provider = settings.ai_provider
 
-        import os
         api_key = ""
         if provider == "gemini":
-            api_key = settings.gemini_api_key or os.getenv("GEMINI_API_KEY", "")
+            api_key = settings.gemini_api_key
         elif provider == "chatgpt":
-            api_key = settings.chatgpt_api_key or os.getenv("CHATGPT_API_KEY", os.getenv("OPENAI_API_KEY", ""))
+            api_key = settings.chatgpt_api_key
         elif provider == "claude":
-            api_key = settings.claude_api_key or os.getenv("CLAUDE_API_KEY", "")
+            api_key = settings.claude_api_key
 
         if not api_key:
-            raise ValueError(f"API Key for {provider} is not configured in settings or environment variables.")
+            raise ValueError(f"API Key for {provider} is not configured in settings.")
 
         base_prompt = settings.prompt or "Tóm tắt cuộc họp sau bằng tiếng Việt:"
 
