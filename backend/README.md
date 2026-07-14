@@ -37,12 +37,12 @@ uv run pytest -q
 
 ## ⚙️ Cấu hình Môi trường
 
-Sao chép `.env.example` thành `.env` và bổ sung các API key của bạn (nếu có):
-* `GEMINI_API_KEY`: API Key kết nối dịch vụ tóm tắt Google Gemini (hoặc cấu hình qua UI).
-* `CHATGPT_API_KEY` (hoặc `OPENAI_API_KEY`): API Key kết nối dịch vụ OpenAI ChatGPT.
-* `CLAUDE_API_KEY`: API Key kết nối dịch vụ Anthropic Claude.
-* `ZIPFORMER_NUM_THREADS`: Giới hạn luồng xử lý CPU (mặc định: `4`).
-* `ZIPFORMER_MODEL_DIR`: Đường dẫn chứa mô hình STT (mặc định: `models`).
+Sao chép `.env.example` thành `.env` và thiết lập các khóa API phù hợp với nhu cầu của bạn (hoặc bạn có thể thiết lập trực tiếp trên màn hình Cài đặt của ứng dụng):
+* `GEMINI_API_KEY`: API Key của Google Gemini.
+* `CHATGPT_API_KEY` (hoặc `OPENAI_API_KEY`): API Key của OpenAI ChatGPT.
+* `CLAUDE_API_KEY`: API Key của Anthropic Claude.
+* `ZIPFORMER_NUM_THREADS`: Giới hạn số luồng CPU dùng cho xử lý nhận diện giọng nói offline (mặc định: `4`).
+* `ZIPFORMER_MODEL_DIR`: Thư mục lưu trữ mô hình STT (mặc định: `models`).
 
 ---
 

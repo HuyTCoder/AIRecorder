@@ -1,23 +1,35 @@
-# Frontend — AI Recorder
+# Frontend — AI Recorder 💻🎨
 
-Giao diện người dùng Electron + Vite + React của ứng dụng AI Recorder. Giao tiếp với FastAPI backend thông qua HTTP Localhost để điều khiển luồng ghi âm và trigger các tác vụ AI ngầm.
+Giao diện người dùng Desktop App được xây dựng bằng công nghệ **Electron + Vite + React (TypeScript)** cho ứng dụng AI Recorder. 
+
+Ứng dụng kết nối trực tiếp đến FastAPI Backend chạy cục bộ để thực hiện việc thu âm, chuẩn hóa âm thanh, hiển thị văn bản nhận diện và hỗ trợ gửi yêu cầu tóm tắt cuộc họp qua các dịch vụ AI.
+
+---
+
+## ⚙️ Cấu hình API Endpoint
+
+Địa chỉ kết nối đến Backend được khai báo trong các file cấu hình môi trường:
+* **Môi trường Development:** [.env.development](file:///d:/KProject/AIRecorder/frontend/.env.development) (`VITE_API_BASE_URL=http://localhost:8000/api/v1`)
+* **Môi trường Production:** `.env.production`
 
 ---
 
 ## 🚀 Hướng dẫn Chạy Local
 
-### 1. Khởi động môi trường & cài đặt thư viện
-Đảm bảo bạn đã cài đặt Node.js (khuyến nghị bản LTS mới nhất).
+### 1. Cài đặt các thư viện phụ thuộc
+Đảm bảo bạn đã cài đặt Node.js trên máy (khuyến nghị bản LTS mới nhất).
 ```powershell
+# Di chuyển vào thư mục frontend và cài đặt thư viện
 cd frontend
 npm install
 ```
 
-### 2. Chạy ứng dụng chế độ Development
+### 2. Khởi chạy ở chế độ Phát triển (Development)
+Lệnh khởi chạy sẽ biên dịch mã nguồn và tự động mở cửa sổ ứng dụng desktop Electron:
 ```powershell
 npm run dev
 ```
-*Lưu ý: Backend FastAPI cần được khởi chạy trước tại địa chỉ `http://localhost:8000`.*
+*Lưu ý: Bạn nên khởi chạy dịch vụ FastAPI Backend trước tại địa chỉ `http://localhost:8000` để ứng dụng có thể kết xuất danh sách thiết bị và bản ghi thành công.*
 
 ---
 
