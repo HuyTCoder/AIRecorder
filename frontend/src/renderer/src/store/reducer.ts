@@ -1,6 +1,6 @@
 export interface LiveRecordingState {
   id?: string
-  state: 'idle' | 'recording' | 'paused'
+  state: 'idle' | 'recording' | 'paused' | 'saving'
   duration: number
   title: string
   deviceName?: string
@@ -35,6 +35,7 @@ export type UIAction =
   | { type: 'PAUSE_LIVE_RECORDING' }
   | { type: 'RESUME_LIVE_RECORDING' }
   | { type: 'STOP_LIVE_RECORDING' }
+  | { type: 'SAVE_LIVE_RECORDING' }
   | { type: 'TICK_DURATION' }
   | { type: 'RESET_LIVE_RECORDING' }
 
@@ -83,6 +84,14 @@ export function uiReducer(state: UIState, action: UIAction): UIState {
         liveRecording: {
           ...state.liveRecording,
           state: 'idle'
+        }
+      }
+    case 'SAVE_LIVE_RECORDING':
+      return {
+        ...state,
+        liveRecording: {
+          ...state.liveRecording,
+          state: 'saving'
         }
       }
     case 'TICK_DURATION':

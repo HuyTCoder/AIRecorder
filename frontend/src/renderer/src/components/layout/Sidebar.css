@@ -390,3 +390,9 @@
   background: rgba(239, 68, 68, 0.15);
   color: var(--state-error);
 }
+
+.badge-saving {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--state-summarizing);
+}
+

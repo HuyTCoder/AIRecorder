@@ -146,7 +146,7 @@ export function Sidebar({ width }: { width?: number }) {
       case 'paused':
         return 'Tạm dừng'
       case 'stopped':
-        return 'Đã dừng'
+        return 'Đã lưu'
       case 'transcribing':
         return 'Đang dịch...'
       case 'transcribed':
@@ -364,12 +364,22 @@ export function Sidebar({ width }: { width?: number }) {
                 </div>
 
                 <div className="item-status">
-                  <span className={getBadgeClass(rec.state)}>
-                    {(rec.state === 'transcribing' || rec.state === 'summarizing') && (
-                      <div className="badge-spinner"></div>
-                    )}
-                    {getBadgeText(rec)}
-                  </span>
+                  {(() => {
+                    const isSaving =
+                      uiState.liveRecording.id === rec.id &&
+                      uiState.liveRecording.state === 'saving'
+                    const badgeClass = isSaving ? 'badge badge-saving' : getBadgeClass(rec.state)
+                    const badgeText = isSaving ? 'Đang lưu...' : getBadgeText(rec)
+                    const showSpinner =
+                      isSaving || rec.state === 'transcribing' || rec.state === 'summarizing'
+
+                    return (
+                      <span className={badgeClass}>
+                        {showSpinner && <div className="badge-spinner"></div>}
+                        {badgeText}
+                      </span>
+                    )
+                  })()}
                 </div>
               </div>
             )

@@ -192,25 +192,27 @@
 }
 
 .btn-stop {
-  background: var(--state-recording);
-  color: white;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-stop:hover {
-  filter: brightness(1.1);
+  background: rgba(255, 255, 255, 0.9);
   transform: scale(1.02);
 }
 
 .btn-cancel {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: var(--state-recording);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
 }
 
 .btn-cancel:hover {
-  background: var(--state-recording);
-  color: white;
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
 }
 
 /* Completed dashboard */
@@ -259,4 +261,134 @@
 .panel-resizer:hover,
 .panel-resizer.dragging {
   background: var(--accent-violet);
+}
+
+/* AI Toggle Buttons */
+.ai-panel {
+  position: relative; /* To anchor absolute close button */
+}
+
+.ai-panel-header {
+  padding-left: 56px !important; /* Move title to the right to clear collapse button */
+}
+
+.ai-toggle-btn-close {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.2s;
+  z-index: 15;
+}
+
+.ai-toggle-btn-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ai-toggle-btn-close .icon-hover {
+  display: none;
+}
+
+.ai-toggle-btn-close:hover .icon-normal {
+  display: none;
+}
+
+.ai-toggle-btn-close:hover .icon-hover {
+  display: block;
+}
+
+/* Open button style (top right of main content) */
+.ai-toggle-btn-open {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.2s;
+  align-self: center;
+}
+
+.ai-toggle-btn-open:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ai-toggle-btn-open .icon-hover {
+  display: none;
+}
+
+.ai-toggle-btn-open:hover .icon-normal {
+  display: none;
+}
+
+.ai-toggle-btn-open:hover .icon-hover {
+  display: block;
+}
+
+/* Saving Loader Overlay */
+.saving-loader-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  gap: 20px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  margin: 40px auto;
+  max-width: 500px;
+  width: 100%;
+}
+
+.saving-loader-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.saving-loader-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.saving-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(139, 92, 246, 0.1);
+  border-top-color: var(--accent-violet);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

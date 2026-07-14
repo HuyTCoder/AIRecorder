@@ -20,9 +20,11 @@
   -webkit-app-region: drag;
 }
 
-.titlebar-logo {
-  margin-right: 6px;
-  font-size: 14px;
+.titlebar-logo-img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  object-fit: contain;
 }
 
 .titlebar-title {

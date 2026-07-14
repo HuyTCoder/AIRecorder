@@ -22,6 +22,7 @@ export function useStopRecording(
       queryClient.invalidateQueries({ queryKey: queryKeys.recording(activeId || '') })
     },
     onError: (err: unknown) => {
+      dispatch({ type: 'STOP_LIVE_RECORDING' })
       handleApiError(err, 'Lỗi dừng ghi âm', toast)
     }
   })

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useApp } from '../../store/AppContext'
 import { useStartRecording } from '../../hooks/useStartRecording'
+import { LiveVisualizer } from '../ui/LiveVisualizer'
 import './CreateRecordingView.css'
 
 export function CreateRecordingView() {
@@ -100,21 +101,39 @@ export function CreateRecordingView() {
             </div>
           </div>
 
-          <div className="form-actions" style={{ marginTop: '24px', justifyContent: 'center' }}>
+          {/* Live visualizer preview */}
+          {useMic && (
+            <div className="live-preview-visualizer" style={{ marginTop: '8px' }}>
+              <span
+                className="visualizer-label"
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--text-muted)',
+                  display: 'block',
+                  textAlign: 'center',
+                  marginBottom: '4px'
+                }}
+              >
+                Đang thử Microphone...
+              </span>
+              <LiveVisualizer isActive={true} useMic={useMic} height={40} barCount={24} />
+            </div>
+          )}
+
+          <div className="form-actions" style={{ marginTop: '24px' }}>
+            <button
+              className="modal-btn-start"
+              onClick={handleStart}
+              disabled={startRecordingMutation.isPending || (!useMic && !useSystem)}
+            >
+              {startRecordingMutation.isPending ? 'Đang khởi động...' : '▶️ Bắt đầu'}
+            </button>
             <button
               className="modal-btn-cancel"
               onClick={() => dispatch({ type: 'SET_CREATING_RECORDING', payload: false })}
               disabled={startRecordingMutation.isPending}
             >
-              Hủy
-            </button>
-            <button
-              className="modal-btn-start"
-              onClick={handleStart}
-              disabled={startRecordingMutation.isPending || (!useMic && !useSystem)}
-              style={{ fontSize: '18px', padding: '12px 32px' }}
-            >
-              {startRecordingMutation.isPending ? 'Đang khởi động...' : '▶️ Bắt đầu'}
+              ❌ Hủy
             </button>
           </div>
         </div>
