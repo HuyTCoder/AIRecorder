@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 
 class SettingsBase(BaseModel):
     ai_provider: str = "gemini"
-    model: str = "gemini-3.5-flash"
+    model: str = ""
     theme: str = "dark"
     font_size: str = "small"
     prompt: str = 'Bạn là một trợ lý AI chuyên nghiệp. Dưới đây là nội dung giải băng (transcript) của một buổi ghi âm.\nHãy tóm tắt cuộc thảo luận này và trích xuất các ý chính (key points) cùng các hành động cần thực hiện (action items).\nTất cả kết quả đầu ra phải được viết bằng tiếng Việt. Trả về định dạng JSON bám sát schema sau: {"summary": "...", "key_points": ["..."], "action_items": ["..."]}'

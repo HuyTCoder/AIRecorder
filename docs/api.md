@@ -244,7 +244,7 @@ Tất cả các API khi gặp lỗi (4xx hoặc 5xx) sẽ phản hồi theo cấ
   ```json
   {
     "ai_provider": "gemini",
-    "model": "gemini-3.5-flash",
+    "model": "",
     "theme": "dark",
     "font_size": "small",
     "prompt": "Bạn là một trợ lý AI chuyên nghiệp...",

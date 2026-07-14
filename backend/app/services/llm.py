@@ -27,8 +27,11 @@ class SummaryService:
             )
 
         settings = SettingsManager.get_runtime_settings()
+        provider = settings.ai_provider or "gemini"
         model_name = settings.model
-        provider = settings.ai_provider
+
+        if not model_name:
+            raise ValueError(f"Model name for provider '{provider}' is not configured. Please enter a valid model name in Settings.")
 
         api_key = ""
         if provider == "gemini":

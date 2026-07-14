@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     # ASR Configuration
     ASR_ENGINE: str = "zipformer"
     ZIPFORMER_MODEL_DIR: str = "models"
-    ZIPFORMER_NUM_THREADS: int = 2
+    ZIPFORMER_NUM_THREADS: int = 4
 
     # Server Configuration
     # The desktop client and backend run on the same machine.  Do not expose

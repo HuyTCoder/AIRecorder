@@ -17,7 +17,7 @@ export function SettingsModal() {
     gemini_api_key: '',
     chatgpt_api_key: '',
     claude_api_key: '',
-    model: 'gemini-3.5-flash',
+    model: '',
     theme: 'dark',
     font_size: 'small',
     prompt: ''
@@ -143,7 +143,7 @@ export function SettingsModal() {
                 type="text"
                 id="model"
                 name="model"
-                placeholder="VD: gemini-3.5-flash, gpt-4o, claude-3-5-sonnet..."
+                placeholder="VD: gemini-2.5-flash, gpt-4o, claude-3-5-sonnet... hoặc mô hình khác"
                 value={formData.model || ''}
                 onChange={handleChange}
               />

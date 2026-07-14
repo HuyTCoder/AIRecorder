@@ -250,7 +250,7 @@ export const api = {
       gemini_api_key: '',
       chatgpt_api_key: '',
       claude_api_key: '',
-      model: 'gemini-3.5-flash',
+      model: '',
       theme: 'dark',
       font_size: 'small',
       prompt:
@@ -270,7 +270,7 @@ export const api = {
       gemini_api_key: '',
       chatgpt_api_key: '',
       claude_api_key: '',
-      model: 'gemini-3.5-flash',
+      model: '',
       theme: 'dark',
       font_size: 'small',
       prompt:
